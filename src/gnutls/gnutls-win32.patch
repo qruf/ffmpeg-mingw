@@ -1,0 +1,10 @@
+--- gnutls-3.3.22/lib/gnutls.pc.in.orig	2016-03-10 16:17:25.955785469 +0100
++++ gnutls-3.3.22/lib/gnutls.pc.in	2016-03-10 16:20:49.979795202 +0100
+@@ -19,6 +19,6 @@
+ URL: http://www.gnutls.org/
+ Version: @VERSION@
+ Libs: -L${libdir} -lgnutls
+-Libs.private: @LIBZ@ @LIBINTL@ @LIBSOCKET@ @LIBPTHREAD@ @LIBICONV@ @P11_KIT_LIBS@ @LIB_SELECT@ @TSS_LIBS@ @GMP_LIBS@
++Libs.private: @LIBZ@ @LIBINTL@ @LIBSOCKET@ -lcrypt32 @LIBPTHREAD@ @LIBICONV@ @P11_KIT_LIBS@ @LIB_SELECT@ @TSS_LIBS@ @GMP_LIBS@
+ @GNUTLS_REQUIRES_PRIVATE@
+ Cflags: -I${includedir}

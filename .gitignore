@@ -1,0 +1,5 @@
+release/*
+release.sh
+build*/*
+!build*/Makefile
+!build*/config.mak

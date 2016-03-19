@@ -1,0 +1,57 @@
+diff -ru libxvid/build/generic/configure libxvid-fixed/build/generic/configure
+--- libxvid/build/generic/configure	2015-06-21 15:21:32.000000000 +0100
++++ libxvid-fixed/build/generic/configure	2016-03-17 05:46:18.526004411 +0000
+@@ -4385,8 +4385,8 @@
+      [cC][yY][gG][wW][iI][nN]*|mingw32*|mks*)
+ 	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: ok" >&5
+ $as_echo "ok" >&6; }
+-	STATIC_LIB="xvidcore.\$(STATIC_EXTENSION)"
+-	SHARED_LIB="xvidcore.\$(SHARED_EXTENSION)"
++	STATIC_LIB="libxvidcore.\$(STATIC_EXTENSION)"
++	SHARED_LIB="libxvidcore.\$(SHARED_EXTENSION)"
+ 	SPECIFIC_LDFLAGS="-shared -Wl,--dll,--out-implib,\$@.a libxvidcore.def"
+ 	SPECIFIC_CFLAGS="-mno-cygwin"
+ 	;;
+diff -ru libxvid/build/generic/Makefile libxvid-fixed/build/generic/Makefile
+--- libxvid/build/generic/Makefile	2015-06-21 15:21:32.000000000 +0100
++++ libxvid-fixed/build/generic/Makefile	2016-03-17 05:46:52.458242282 +0000
+@@ -70,7 +70,7 @@
+ 
+ .SUFFIXES: .$(OBJECT_EXTENSION) .$(ASSEMBLY_EXTENSION) .c
+ 
+-all: info $(STATIC_LIB) $(SHARED_LIB)
++all: info $(STATIC_LIB)
+ 	@echo
+ 	@echo "---------------------------------------------------------------"
+ 	@echo " Xvid has been successfully built."
+@@ -140,7 +140,7 @@
+ # Installation
+ #-----------------------------------------------------------------------------
+ 
+-install: $(BUILD_DIR)/$(STATIC_LIB) $(BUILD_DIR)/$(SHARED_LIB)
++install: $(BUILD_DIR)/$(STATIC_LIB)
+ 	@echo "  D: $(includedir)"
+ 	@$(INSTALL) -d $(DESTDIR)$(includedir)
+ 	@echo "  I: $(includedir)/xvid.h"
+@@ -149,21 +149,6 @@
+ 	@$(INSTALL) -d $(DESTDIR)$(libdir)
+ 	@echo "  I: $(libdir)/$(STATIC_LIB)"
+ 	@$(INSTALL) -m 644 $(BUILD_DIR)/$(STATIC_LIB) $(DESTDIR)$(libdir)/$(STATIC_LIB)
+-ifeq ($(SHARED_EXTENSION),dll)
+-	@echo "  I: $(libdir)/$(SHARED_LIB).a"
+-	@$(INSTALL) -m 644 $(BUILD_DIR)/$(SHARED_LIB).a $(DESTDIR)$(libdir)/$(SHARED_LIB).a
+-	@echo "  D: $(bindir)"
+-	@$(INSTALL) -d $(DESTDIR)$(bindir)
+-	@echo "  I: $(bindir)/$(SHARED_LIB)"
+-	@$(INSTALL) -m 755 $(BUILD_DIR)/$(SHARED_LIB) $(DESTDIR)$(bindir)/$(SHARED_LIB)
+-else
+-	@echo "  I: $(libdir)/$(SHARED_LIB)"
+-	@$(INSTALL) -m 644 $(BUILD_DIR)/$(SHARED_LIB) $(DESTDIR)$(libdir)/$(SHARED_LIB)
+-	@test -z "$(SO_API_MAJOR_LINK)" || \
+-		$(LN_S) $(SHARED_LIB) $(DESTDIR)$(libdir)/$(SO_API_MAJOR_LINK)
+-	@test -z "$(SO_LINK)" || \
+-		$(LN_S) $(SHARED_LIB) $(DESTDIR)$(libdir)/$(SO_LINK)
+-endif
+ 
+ #-----------------------------------------------------------------------------
+ # Platorm specific file -- dumb rules for people executing make before

@@ -1,0 +1,12 @@
+diff -ru zimg/src/vszimg/vszimg.c zimg-fixed/src/vszimg/vszimg.c
+--- zimg/src/vszimg/vszimg.c	2016-01-22 18:12:28.000000000 +0000
++++ zimg-fixed/src/vszimg/vszimg.c	2016-03-07 15:19:57.351571428 +0000
+@@ -5,7 +5,7 @@
+ #include <string.h>
+ 
+ #ifdef _WIN32
+-  #include <Windows.h>
++  #include <windows.h>
+   typedef CRITICAL_SECTION vszimg_mutex_t;
+ 
+   static int vszimg_mutex_init(vszimg_mutex_t *mutex) { InitializeCriticalSection(mutex); return 0;  }

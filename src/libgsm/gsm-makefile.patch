@@ -1,0 +1,66 @@
+diff -ru libgsm/Makefile libgsm-fixed/Makefile
+--- libgsm/Makefile	2006-04-26 20:14:26.000000000 +0100
++++ libgsm-fixed/Makefile	2016-03-17 21:34:56.127523442 +0000
+@@ -43,10 +43,8 @@
+ # CC		= /usr/lang/acc
+ # CCFLAGS 	= -c -O
+ 
+-CC		= gcc -ansi -pedantic
+ CCFLAGS 	= -c -O2 -DNeedFunctionPrototypes=1
+ 
+-LD 		= $(CC)
+ 
+ # LD		= gcc
+ # LDFLAGS 	=
+@@ -71,7 +69,7 @@
+ # Leave INSTALL_ROOT empty (or just don't execute "make install") to
+ # not install gsm and toast outside of this directory.
+ 
+-INSTALL_ROOT	=
++INSTALL_ROOT	= $(PREFIX)
+ 
+ # Where do you want to install the gsm library, header file, and manpages?
+ #
+@@ -80,7 +78,7 @@
+ 
+ GSM_INSTALL_ROOT = $(INSTALL_ROOT)
+ GSM_INSTALL_LIB = $(GSM_INSTALL_ROOT)/lib
+-GSM_INSTALL_INC = $(GSM_INSTALL_ROOT)/inc
++GSM_INSTALL_INC = $(GSM_INSTALL_ROOT)/include
+ GSM_INSTALL_MAN = $(GSM_INSTALL_ROOT)/man/man3
+ 
+ 
+@@ -98,14 +96,11 @@
+ SHELL		= /bin/sh
+ LN		= ln
+ BASENAME 	= basename
+-AR		= ar
+ ARFLAGS		= cr
+ RMFLAGS		=
+ FIND		= find
+ COMPRESS 	= compress
+ COMPRESSFLAGS 	= 
+-# RANLIB 	= true
+-RANLIB	 	= ranlib
+ 
+ #
+ #    You shouldn't have to configure below this line if you're porting.
+@@ -129,7 +124,7 @@
+ # DEBUG	= -DNDEBUG
+ ######### Remove -DNDEBUG to enable assertions.
+ 
+-CFLAGS	= $(CCFLAGS) $(SASR) $(DEBUG) $(MULHACK) $(FAST) $(LTP_CUT) \
++CFLAGS	+= $(CCFLAGS) $(SASR) $(DEBUG) $(MULHACK) $(FAST) $(LTP_CUT) \
+ 	$(WAV49) $(CCINC) -I$(INC)
+ ######### It's $(CC) $(CFLAGS)
+ 
+@@ -279,7 +274,7 @@
+ 
+ # Target rules
+ 
+-all:		$(LIBGSM) $(TOAST) $(TCAT) $(UNTOAST)
++all:		$(LIBGSM)
+ 		@-echo $(ROOT): Done.
+ 
+ tst:		$(TST)/lin2cod $(TST)/cod2lin $(TOAST) $(TST)/test-result
+Only in libgsm-fixed: Makefile.orig

@@ -1,0 +1,42 @@
+diff -ru librtmp-git/librtmp/Makefile librtmp-git-fixed/librtmp/Makefile
+--- librtmp-git/librtmp/Makefile	2016-03-07 19:32:26.000000000 +0000
++++ librtmp-git-fixed/librtmp/Makefile	2016-03-07 19:35:48.971839866 +0000
+@@ -1,11 +1,9 @@
+ VERSION=v2.4
+ 
+-prefix=/usr/local
+-
+-incdir=$(prefix)/include/librtmp
+-bindir=$(prefix)/bin
+-libdir=$(prefix)/lib
+-mandir=$(prefix)/man
++incdir=$(PREFIX)/include/librtmp
++bindir=$(PREFIX)/bin
++libdir=$(PREFIX)/lib
++mandir=$(PREFIX)/man
+ BINDIR=$(DESTDIR)$(bindir)
+ INCDIR=$(DESTDIR)$(incdir)
+ LIBDIR=$(DESTDIR)$(libdir)
+@@ -15,9 +13,10 @@
+ LD=$(CROSS_COMPILE)ld
+ AR=$(CROSS_COMPILE)ar
+ 
+-SYS=posix
+-CRYPTO=OPENSSL
+-#CRYPTO=GNUTLS
++#SYS=posix
++SYS=mingw
++#CRYPTO=OPENSSL
++CRYPTO=GNUTLS
+ DEF_POLARSSL=-DUSE_POLARSSL
+ DEF_OPENSSL=-DUSE_OPENSSL
+ DEF_GNUTLS=-DUSE_GNUTLS
+@@ -99,7 +98,7 @@
+ parseurl.o: parseurl.c rtmp.h rtmp_sys.h log.h Makefile
+ 
+ librtmp.pc: librtmp.pc.in Makefile
+-	sed -e "s;@prefix@;$(prefix);" -e "s;@libdir@;$(libdir);" \
++	sed -e "s;@PREFIX@;$(PREFIX);" -e "s;@libdir@;$(libdir);" \
+ 		-e "s;@VERSION@;$(VERSION);" \
+ 		-e "s;@CRYPTO_REQ@;$(CRYPTO_REQ);" \
+ 		-e "s;@PUBLIC_LIBS@;$(PUBLIC_LIBS);" \

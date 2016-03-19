@@ -1,0 +1,9 @@
+diff -ru zimg/zimg.pc.in zimg-fixed/zimg.pc.in
+--- zimg/zimg.pc.in	2016-03-07 13:40:49.421301903 +0000
++++ zimg-fixed/zimg.pc.in	2016-03-07 13:45:01.183190055 +0000
+@@ -8,4 +8,5 @@
+ Version: @VERSION@
+ 
+ Libs: -L${libdir} -lzimg
++Libs.private: -lstdc++
+ Cflags: -I${includedir}
