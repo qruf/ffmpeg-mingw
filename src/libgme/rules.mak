@@ -5,7 +5,9 @@ GME_URL := https://bitbucket.org/mpyne/game-music-emu/downloads/game-music-emu-$
 GME_BRANCH := master
 GME_GITURL := https://bitbucket.org/mpyne/game-music-emu/get/$(GME_BRANCH).tar.bz2
 
-GMECONF := -DBUILD_SHARED_LIBS=OFF $(GMEOPTS)
+GMECONF := \
+	-DBUILD_SHARED_LIBS=OFF \
+	$(GMEOPTS)
 
 $(TARBALLS)/libgme-$(GME_VERSION).tar.bz2:
 	$(call download,$(GME_URL))

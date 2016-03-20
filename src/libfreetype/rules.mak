@@ -5,9 +5,10 @@ FREETYPE2_URL := $(SF)/freetype/freetype2/$(FREETYPE2_VERSION)/freetype-$(FREETY
 
 FREETYPE_CONF := \
 	--with-harfbuzz=no \
+	--with-bzlib=yes \
 	--with-zlib=yes \
 	--without-png \
-	--with-bzip2=no 
+	$(FREETYPEOPTS)
 
 $(TARBALLS)/freetype-$(FREETYPE2_VERSION).tar.gz:
 	$(call download,$(FREETYPE2_URL))
@@ -18,9 +19,9 @@ libfreetype: freetype-$(FREETYPE2_VERSION).tar.gz
 	$(MOVE)
 	cd $@ && cp builds/unix/install-sh .
 
-.libfreetype: libfreetype .zlib
-	sed -i.orig s/-ansi// $</builds/unix/configure # why isn't this a fucking patch vlc
-	cd $< && GNUMAKE=$(MAKE) $(HOSTVARS) ./configure $(HOSTCONF)
+.libfreetype: libfreetype .bzlib .zlib 
+	sed -i.orig s/-ansi// $</builds/unix/configure 
+	cd $< && GNUMAKE=$(MAKE) $(HOSTVARS) ./configure $(HOSTCONF) $(FREETYPE_CONF)
 	cd $< && $(MAKE) && $(MAKE) install
 	touch $@
 

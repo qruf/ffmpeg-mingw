@@ -1,12 +1,16 @@
-# libiconv
+# iconv
 
 ICONV_VERSION=1.14
 ICONV_URL=$(GNU)/libiconv/libiconv-$(ICONV_VERSION).tar.gz
 
-$(TARBALLS)/libiconv-$(ICONV_VERSION).tar.gz:
+ICONV_CONF := \
+	--disable-nls \
+	$(ICONVOPTS)
+
+$(TARBALLS)/iconv-$(ICONV_VERSION).tar.gz:
 	$(call download,$(ICONV_URL))
 
-iconv: libiconv-$(ICONV_VERSION).tar.gz
+iconv: iconv-$(ICONV_VERSION).tar.gz
 	$(UNPACK)
 	$(APPLY) $(SRC)/iconv/win32.patch
 	$(APPLY) $(SRC)/iconv/bins.patch
@@ -19,6 +23,6 @@ endif
 	$(MOVE)
 
 .iconv: iconv
-	cd $< && $(HOSTVARS) ./configure CFLAGS="$(CFLAGS) -fgnu89-inline" $(HOSTCONF) --disable-nls
+	cd $< && $(HOSTVARS) ./configure CFLAGS="$(CFLAGS) -fgnu89-inline" $(HOSTCONF) $(ICONV_CONF)
 	cd $< && $(MAKE) install
 	touch $@

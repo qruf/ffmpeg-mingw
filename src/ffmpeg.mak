@@ -12,7 +12,8 @@ FFMPEGCONF := \
 	--pkg-config="$(PKG_CONFIG) --static" \
  	--disable-doc \
 	--disable-debug \
-	$(TARGETS:.%=--enable-%) 
+	$(FFMPEGOPTS) \
+	$(TARGETS:.%=--enable-%)
 
 ifdef ENABLE_GPL
 FFMPEGCONF += --enable-gpl
@@ -23,10 +24,7 @@ endif
 ifdef ENABLE_NONFREE
 FFMPEGCONF += --enable-nonfree
 endif
-
-ifdef ENABLE_SMALL
-FFMPEGCONF += --enable-small
-else ifdef DEBUG
+ifdef DEBUG
 FFMPEGCONF += --optflags=-O0
 endif
 
@@ -35,8 +33,6 @@ FFMPEGCONF += --arch=x86
 else ifeq ($(ARCH),x86_64)
 FFMPEGCONF += --arch=x86_64
 endif
-
-FFMPEGCONF += $(FFMPEGOPTS)
 
 ifndef HAVE_MINGW_W64
 TARGETS += .directx

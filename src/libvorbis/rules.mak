@@ -5,7 +5,11 @@ VORBIS_URL := http://downloads.xiph.org/releases/vorbis/libvorbis-$(VORBIS_VERSI
 VORBIS_BRANCH := master
 VORBIS_GITURL := https://git.xiph.org/?p=vorbis.git;a=snapshot;h=refs/heads/$(VORBIS_BRANCH);sf=tgz
 
-VORBISCONF := --disable-docs --disable-examples --disable-oggtest $(VORBISOPTS)
+VORBISCONF := \
+	--disable-docs \
+	--disable-examples \
+	--disable-oggtest \
+	$(VORBISOPTS)
 
 $(TARBALLS)/libvorbis-$(VORBIS_VERSION).tar.xz:
 	$(call download,$(VORBIS_URL))

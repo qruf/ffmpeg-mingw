@@ -24,6 +24,6 @@ libfdk-aac-git: libfdk-aac-git.tar.gz
 	$(AUTOGEN)
 
 .libfdk-aac: $(filter libfdk-aac%,$(PKGS))
-	cd $< && $(HOSTVARS) ./configure $(HOSTCONF) --enable-static --disable-shared
+	cd $< && $(HOSTVARS) ./configure $(HOSTCONF) $(FDKOPTS)
 	cd $< && $(MAKE) install
 	touch $@

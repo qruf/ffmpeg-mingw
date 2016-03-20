@@ -7,7 +7,8 @@ FONTCONFIG_CONF := $(HOSTCONF) \
 	--enable-libxml2 \
 	--disable-docs \
 	--with-arch=$(ARCH) \
-	--with-freetype-config="$(PREFIX)/bin/freetype-config"
+	--with-freetype-config="$(PREFIX)/bin/freetype-config" \
+	$(FONTCONFIGOPTS)
 
 $(TARBALLS)/fontconfig-$(FONTCONFIG_VERSION).tar.gz:
 	$(call download,$(FONTCONFIG_URL))

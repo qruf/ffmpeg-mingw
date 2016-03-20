@@ -14,6 +14,6 @@ libmodplug: libmodplug-$(MODPLUG_VERSION).tar.gz
 
 .libmodplug: libmodplug
 	$(RECONF)
-	cd $< && $(HOSTVARS) ./configure $(HOSTCONF)
+	cd $< && $(HOSTVARS) ./configure $(HOSTCONF) $(MODPLUGOPTS)
 	cd $< && $(MAKE) install
 	touch $@

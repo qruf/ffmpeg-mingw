@@ -6,7 +6,8 @@ RTMP_GITURL := http://repo.or.cz/rtmpdump.git/snapshot/$(RTMP_BRANCH).tar.gz
 $(TARBALLS)/librtmp-git.tar.gz:
 	$(call download,$(RTMP_GITURL))
 
-RTMPVARS=CROSS_COMPILE=$(HOST)- \
+RTMPVARS= \
+	CROSS_COMPILE=$(HOST)- \
 	PREFIX=$(PREFIX) \
 	XCFLAGS=`pkg-config --cflags gnutls`
 

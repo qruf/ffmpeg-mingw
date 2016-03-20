@@ -5,7 +5,10 @@ X265_URL := https://bitbucket.org/multicoreware/x265/get/$(X265_VERSION).tar.bz2
 X265_BRANCH := stable
 X265_GITURL := https://bitbucket.org/multicoreware/x265/get/$(X265_BRANCH).tar.bz2
 
-X265CONF := -DENABLE_SHARED=OFF -DENABLE_CLI=OFF $(X265OPTS)
+X265CONF := \
+	-DENABLE_SHARED=OFF \
+	-DENABLE_CLI=OFF \
+	$(X265OPTS)
 
 ENABLE_GPL := 1
 
@@ -26,7 +29,5 @@ libx265-git: x265-git.tar.bz2
 .libx265: $(filter libx265%,$(PKGS)) toolchain.cmake
 	cd $</source && $(HOSTVARS) $(CMAKE) $(X265CONF)
 	cd $</source && $(MAKE) install
-	# FIXME: wtf is this
-	sed -e s/'[^ ]*clang_rt[^ ]*'//g -i.orig "$(PREFIX)/lib/pkgconfig/x265.pc"
 	touch $@
 

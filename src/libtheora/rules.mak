@@ -5,12 +5,13 @@ THEORA_URL := http://downloads.xiph.org/releases/theora/libtheora-$(THEORA_VERSI
 THEORA_BRANCH := master
 THEORA_GITURL := https://git.xiph.org/?p=theora.git;a=snapshot;h=refs/heads/$(THEORA_BRANCH);sf=tgz
 
-THEORACONF := $(HOSTCONF) \
+THEORACONF := \
 	--disable-spec \
 	--disable-sdltest \
 	--disable-oggtest \
 	--disable-vorbistest \
-	--disable-examples
+	--disable-examples \
+	$(THEORAOPTS)
 
 ifdef HAVE_WIN64
 THEORACONF += --disable-asm
@@ -36,6 +37,6 @@ libtheora-git: libtheora-git.tar.gz
 	$(AUTOGEN) $(THEORACONF)
 
 .libtheora: $(filter libtheora%,$(PKGS)) .ogg
-	cd $< && $(HOSTVARS) ./configure $(THEORACONF)
+	cd $< && $(HOSTVARS) ./configure $(HOSTCONF) $(THEORACONF)
 	cd $< && $(MAKE) install
 	touch $@

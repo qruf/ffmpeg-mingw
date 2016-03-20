@@ -12,6 +12,6 @@ zlib: zlib-$(ZLIB_VERSION).tar.gz
 	$(MOVE)
 
 .zlib: zlib
-	cd $< && $(HOSTVARS) CFLAGS="$(CFLAGS)" ./configure --prefix=$(PREFIX) --static
+	cd $< && $(HOSTVARS) ./configure --prefix=$(PREFIX) --static $(ZLIBOPTS)
 	cd $< && $(MAKE) install
 	touch $@

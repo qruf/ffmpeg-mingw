@@ -5,16 +5,16 @@ OGG_URL := http://downloads.xiph.org/releases/ogg/libogg-$(OGG_VERSION).tar.xz
 
 DEPSONLY += ogg
 
-$(TARBALLS)/libogg-$(OGG_VERSION).tar.xz:
+$(TARBALLS)/ogg-$(OGG_VERSION).tar.xz:
 	$(call download,$(OGG_URL))
 
-ogg: libogg-$(OGG_VERSION).tar.xz
+ogg: ogg-$(OGG_VERSION).tar.xz
 	$(UNPACK)
 	$(UPDATE_AUTOCONFIG)
 	$(MOVE)
 
 .ogg: ogg
 	$(RECONF)
-	cd $< && $(HOSTVARS) ./configure $(HOSTCONF)
+	cd $< && $(HOSTVARS) ./configure $(HOSTCONF) $(OGGOPTS)
 	cd $< && $(MAKE) install
 	touch $@

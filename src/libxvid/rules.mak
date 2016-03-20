@@ -23,6 +23,6 @@ libxvid: libxvid-$(XVID_VERSION).tar.gz
 # 	$(MOVE)
 
 .libxvid: $(filter libxvid%,$(PKGS))
-	cd $</build/generic && ./configure $(HOSTCONF)
+	cd $</build/generic && ./configure $(HOSTCONF) $(XVIDOPTS)
 	cd $</build/generic && $(HOSTVARS) $(MAKE) && $(MAKE) install
 	touch $@

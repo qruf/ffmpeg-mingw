@@ -5,7 +5,9 @@ CELT_URL := http://downloads.xiph.org/releases/celt/celt-$(CELT_VERSION).tar.gz
 CELT_BRANCH := master
 CELT_GITURL := https://git.xiph.org/?p=celt.git;a=snapshot;h=refs/heads/$(CELT_BRANCH);sf=tgz
 
-CELT_CONF := --disable-binaries
+CELT_CONF := \
+	--disable-binaries \
+	$(CELTOPTS)
 
 $(TARBALLS)/libcelt-$(CELT_VERSION).tar.gz:
 	$(call download,$(CELT_URL))

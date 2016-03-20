@@ -3,12 +3,12 @@
 NETTLE_VERSION := 2.7.1
 NETTLE_URL := ftp://ftp.gnu.org/gnu/nettle/nettle-$(NETTLE_VERSION).tar.gz
 
-DEPSONLY += nettle
-
 NETTLECONF := \
 	--disable-pic \
 	--disable-documentation \
 	$(NETTLEOPTS)	
+
+DEPSONLY += nettle
 
 $(TARBALLS)/nettle-$(NETTLE_VERSION).tar.gz:
 	$(call download,$(NETTLE_URL))

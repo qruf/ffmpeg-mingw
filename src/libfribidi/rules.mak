@@ -14,6 +14,6 @@ libfribidi: fribidi-$(FRIBIDI_VERSION).tar.bz2
 
 .libfribidi: libfribidi
 	$(RECONF)
-	cd $< && $(HOSTVARS) ./configure $(HOSTCONF)
+	cd $< && $(HOSTVARS) ./configure $(HOSTCONF) $(FRIBIDIOPTS)
 	cd $< && $(MAKE) install
 	touch $@

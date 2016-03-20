@@ -17,6 +17,7 @@ GNUTLS_CONF := \
 	--without-libintl-prefix \
 	--disable-doc \
 	--disable-tests \
+	$(GNUTLSOPTS)
 
 $(TARBALLS)/gnutls-$(GNUTLS_VERSION).tar.xz:
 	$(call download,$(GNUTLS_URL))

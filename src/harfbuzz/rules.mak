@@ -1,9 +1,13 @@
-# HARFBUZZ
+# harfbuzz
 
 HARFBUZZ_VERSION := 1.2.3
 HARFBUZZ_URL := http://www.freedesktop.org/software/harfbuzz/release/harfbuzz-$(HARFBUZZ_VERSION).tar.bz2
 
-HARFBUZZCONF = --with-icu=no --with-glib=no --with-fontconfig=yes
+HARFBUZZCONF = \
+	--with-icu=no \
+	--with-glib=no \
+	--with-fontconfig=yes \
+	$(HARFBUZZOPTS)
 
 DEPSONLY += harfbuzz
 

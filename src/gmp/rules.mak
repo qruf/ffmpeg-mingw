@@ -5,14 +5,14 @@ GMP_URL := https://gmplib.org/download/gmp-$(GMP_VERSION)/gmp-$(GMP_VERSION).tar
 
 ENABLE_GPL3 := 1
 
-$(TARBALLS)/gmp-$(GMP_VERSION).tar.bz2:
+$(TARBALLS)/gmp-$(GMP_VERSION).tar.xz:
 	$(call download,$(GMP_URL))
 
-gmp: gmp-$(GMP_VERSION).tar.bz2
+gmp: gmp-$(GMP_VERSION).tar.xz
 	$(UNPACK)
 	$(MOVE)
 
 .gmp: gmp
-	cd $< && $(HOSTVARS) ./configure $(HOSTCONF)
+	cd $< && $(HOSTVARS) ./configure $(HOSTCONF) $(GMPOPTS)
 	cd $< && $(MAKE) install
 	touch $@

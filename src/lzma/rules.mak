@@ -12,7 +12,7 @@ lzma: xz-$(LZMA_VERSION).tar.xz
 	$(MOVE)
 
 .lzma: lzma
-	cd $< && ./configure $(HOSTCONF)
+	cd $< && ./configure $(HOSTCONF) $(LZMAOPTS)
 	cd $</src/liblzma && $(MAKE) $(HOSTVARS) install
 	touch $@
 

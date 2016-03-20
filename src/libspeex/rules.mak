@@ -3,9 +3,11 @@
 SPEEX_VERSION := 1.2rc2
 SPEEX_URL := http://downloads.xiph.org/releases/speex/speex-$(SPEEX_VERSION).tar.gz
 SPEEX_BRANCH := master
-SPEEX_GITURL := https://git.xiph.org/?p=speex.git;a=snapshot;h=refs/heads/$(VORBIS_BRANCH);sf=tgz
+SPEEX_GITURL := https://git.xiph.org/?p=speex.git;a=snapshot;h=refs/heads/$(SPEEX_BRANCH);sf=tgz
 
-SPEEX_CONF := --disable-binaries
+SPEEX_CONF := \
+	--disable-binaries \
+	$(SPEEXOPTS)
 
 $(TARBALLS)/libspeex-$(SPEEX_VERSION).tar.gz:
 	$(call download,$(SPEEX_URL))

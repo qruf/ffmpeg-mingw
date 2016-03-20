@@ -6,7 +6,8 @@ LAME_URL := $(SF)/lame/lame-$(LAME_VERSION).tar.gz
 LAME_CONF := --disable-analyzer-hooks \
 	--disable-decoder \
 	--disable-gtktest \
-	--disable-frontend
+	--disable-frontend \
+	$(LAMEOPTS)
 
 $(TARBALLS)/libmp3lame-$(LAME_VERSION).tar.gz:
 	$(call download,$(LAME_URL))

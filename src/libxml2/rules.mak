@@ -3,11 +3,6 @@
 LIBXML2_VERSION := 2.9.3
 LIBXML2_URL := http://xmlsoft.org/sources/libxml2-$(LIBXML2_VERSION).tar.gz
 
-DEPSONLY += libxml2
-
-$(TARBALLS)/libxml2-$(LIBXML2_VERSION).tar.gz:
-	$(call download,$(LIBXML2_URL))
-
 XMLCONF = --with-minimal     \
           --with-catalog     \
           --with-reader      \
@@ -25,7 +20,13 @@ XMLCONF = --with-minimal     \
           --without-debug    \
           --without-docbook  \
           --without-regexps  \
-          --without-python
+          --without-python   \
+		  $(XMLOPTS)
+
+DEPSONLY += libxml2
+
+$(TARBALLS)/libxml2-$(LIBXML2_VERSION).tar.gz:
+	$(call download,$(LIBXML2_URL))
 
 libxml2: libxml2-$(LIBXML2_VERSION).tar.gz
 	$(UNPACK)

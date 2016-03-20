@@ -14,6 +14,6 @@ libmfx-git: libmfx
 
 .libmfx: libmfx
 	$(RECONF)
-	cd $< && $(HOSTVARS) ./configure $(HOSTCONF)
+	cd $< && $(HOSTVARS) ./configure $(HOSTCONF) $(MFXOPTS)
 	cd $< && $(MAKE) install
 	touch $@

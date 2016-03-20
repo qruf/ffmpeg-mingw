@@ -37,7 +37,7 @@ libvpx-git: libvpx-git.tar.gz
 	$(MOVE)
 
 .libvpx: $(filter libvpx%,$(PKGS))
-	cd $< && LDFLAGS="$(LDFLAGS)" CROSS=$(HOST)- ./configure $(VPX_CONF)
+	cd $< && CROSS=$(HOST)- ./configure $(VPX_CONF)
 	cd $< && $(MAKE)
 	cd $< && ../../src/pkg-static.sh vpx.pc
 	cd $< && $(MAKE) install

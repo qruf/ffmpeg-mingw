@@ -1,4 +1,4 @@
-# SDL
+# sdl
 
 SDL_VERSION := 1.2.15
 SDL_URL := http://www.libsdl.org/release/SDL-$(SDL_VERSION).tar.gz
@@ -22,16 +22,17 @@ SDLCONF := $(HOSTCONF) \
 	--disable-video-directfb \
 	--disable-video-ggi \
 	--disable-video-svga \
-	--disable-sdl-dlopen
+	--disable-sdl-dlopen \
+	$(SDLOPTS)
 
 ifndef HAVE_MINGW_W64
 SDLDEPS := .directx
 endif
 
-$(TARBALLS)/SDL-$(SDL_VERSION).tar.gz:
+$(TARBALLS)/sdl-$(SDL_VERSION).tar.gz:
 	$(call download,$(SDL_URL))
 
-sdl: SDL-$(SDL_VERSION).tar.gz 
+sdl: sdl-$(SDL_VERSION).tar.gz 
 	$(UNPACK)
 	$(APPLY) $(SRC)/sdl/direct_palette_ref.diff
 	$(MOVE)
